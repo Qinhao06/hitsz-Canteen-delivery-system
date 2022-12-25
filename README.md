@@ -8,7 +8,7 @@
 - 基于django框架进行搭建
 - 使用bootstrap，html和css实现前端
 - 数据库模型：
-image.png
+![img](.\1.png)
 ####  基本使用方式
 - 进入canteen_deliver目录下运行  ` python manage.py runserver `
 -  随后会发现出现错误，这是因为要需要先导入数据库，
