@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}点餐{% endblock %}
+{% block css %}<link href="{% static 'css/login.css' %}" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+{% endblock %}
+
+{% block content %}
+<div class=" container  ">
+  <div class="loginform center-block ">
+    <h3>评价👍</h3>
+           {% csrf_token %}
+      <table class="table  table-bordered">
+                    <caption></caption>
+                    <thead>
+
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>订单编号</td>
+                            <td>用户姓名</td>
+                            <td>评价分数</td>
+                            <td>评价内容</td>
+                        </tr>
+                        {% if ass_list %}
+                            {% for ass in ass_list %}
+                        <tr>
+                            <td>{{ass.order_id}}</td>
+                            <td>{{ass.order.user.user_id}}</td>
+                            <td>{{ass.score}}</td>
+                            <td>{{ass.context}}</td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+
+
+        </div>
+    </div>
+
+{% endblock %}

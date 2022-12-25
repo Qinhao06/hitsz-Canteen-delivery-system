@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}点餐{% endblock %}
+{% block css %}<link href="{% static 'css/login.css' %}" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+{% endblock %}
+
+{% block content %}
+<div class=" container  ">
+  <div class="loginform center-block ">
+    <h3>订单🍚</h3>
+           {% if message %}
+              <div class="alert alert-warning">{{ message }}</div>
+           {% endif %}
+            <div class="">
+                <form class="form-register " method="post" action="/order/payment/">
+                  {% csrf_token %}
+                    <div class="form-group ">
+                    <div class="text-left"><label>评价订单编号</label></div>
+                    <input type="text" class="form-control" name="ass_order_id"></input>
+                </div>
+                <div class="form-group" >
+                    <div class="text-left"><label>评价内容</label></div>
+                    <input type="text" class="form-control" name="context"></input>
+                </div>
+                <div class="form-group" >
+                    <div class="text-left"><label>评分</label></div>
+                    <select type="text" class="form-control" name="score">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                 <button type="submit" class="btn btn-primary pull-middle btn-lg">提交评价</button>
+            </form>
+            </div>
+            <br>
+           {% csrf_token %}
+
+                        <table class="table  table-bordered">
+                    <caption></caption>
+                    <thead>
+
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>订单编号</td>
+                            <td>用户姓名</td>
+                            <td>菜品</td>
+                            <td>数量</td>
+                            <td>价格</td>
+                            <td>商家</td>
+                            <td>订单状态</td>
+                            <td>外送地址</td>
+                            <td>联系方式</td>
+                        </tr>
+                        {% if order_list %}
+                            {% for order in order_list %}
+                        <tr>
+                            <td>{{order.order_id}}</td>
+                            <td>{{order.user_id}}</td>
+                            <td>{{order.dish.dish_name}}</td>
+                            <td>{{order.dish_num}}</td>
+                            <td>{% widthratio order.dish_num 1 order.dish.price %}</td>
+                            <td>{{order.dish.stall.name}}</td>
+                            <td>{{order.order_status}}</td>
+                            <td>{{order.address}}</td>
+                            <td>{{order.telephone}}</td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+
+
+        </div>
+    </div>
+
+{% endblock %}

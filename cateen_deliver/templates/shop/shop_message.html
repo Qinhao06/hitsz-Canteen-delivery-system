@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}点餐{% endblock %}
+{% block css %}<link href="{% static 'css/login.css' %}" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+{% endblock %}
+
+{% block content %}
+<div class=" formback">
+  <div class="loginform jumbotron">
+    <h3>商家信息修改</h3>
+<!--    <div class="container">-->
+<!--        <div class="col-md-4 col-md-offset-4">-->
+          <form class='form-register' action="/shop/message/" method="post">
+
+              {% if message %}
+                  <div class="alert alert-warning">{{ message }}</div>
+              {% endif %}
+
+              {% csrf_token %}
+
+              <div class="form-group">
+                  <div class="text-left"><label >name：</label></div>
+                  <input type="text" class="form-control" placeholder={{stall.name}} id="name" name="name">
+              </div>
+              <div class="form-group">
+                  <div class="text-left"><label >联系电话:</label></div>
+                  <input type="text" class="form-control" placeholder={{stall.telephone}} id="telephone" name="telephone">
+              </div>
+              <div class="form-group">
+                  <div class="text-left"><label >地址:</label></div>
+                  <input type="text" class="form-control" placeholder={{stall.address}} id="address" name="address" >
+              </div>
+              <div> <select class="hidden" name="stall_id"><option>{{stall_id}}</option></select></div>
+              <button type="submit" class="btn btn-primary pull-middle btn-lg">change</button>
+
+          </form>
+        </div>
+    </div> <!-- /container -->
+{% endblock %}

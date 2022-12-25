@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}点餐{% endblock %}
+{% block css %}<link href="{% static 'css/login.css' %}" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+{% endblock %}
+
+{% block content %}
+<div class=" container  ">
+  <div class="loginform center-block ">
+    <h3>菜品管理✨</h3>
+           {% if message %}
+              <div class="alert alert-warning">{{ message }}</div>
+           {% endif %}
+
+           {% csrf_token %}
+
+      <table class="table  table-bordered">
+                    <caption></caption>
+                    <thead>
+
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>菜品编号</td>
+                            <td>菜品名称</td>
+                            <td>价格</td>
+                            <td>菜品描述</td>
+                            <td>商家</td>
+                            <td>删除按钮</td>
+                        </tr>
+                        {% if dish_list %}
+                            {% for dish in dish_list %}
+                        <tr>
+                            <td>{{dish.dish_id}} </td>
+                            <td>{{dish.dish_name}}</td>
+                            <td>{{dish.price}}</td>
+                            <td>{{dish.description}}</td>
+                            <td>{{dish.stall.name}}</td>
+                            <td>
+
+                                <form class="form-group" method="post" action="/shop/dish/" >
+                                    {% csrf_token %}
+                                    <select name="stall_dish_id" class="hidden">
+                                    <option>{{dish.dish_id}}</option>
+                                    </select>
+                                        <button> 删除</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+             <form class='form-register' action="/shop/dish/" method="post">
+
+                  {% csrf_token %}
+                  <div class="form-group">
+                      <div class="text-left"><label>菜品名称</label></div>
+                      <input type="text" class="form-control" placeholder="" name="dish_name">
+                  </div>
+                  <div class="form-group">
+                      <div class="text-left"><label>价格</label></div>
+                      <input type="text" class="form-control" placeholder="" name="dish_price">
+                  </div>
+                  <div class="form-group">
+                      <div class="text-left"><label>菜品描述</label></div>
+                      <input type="text" class="form-control" placeholder=""  name="dish_description">
+                  </div>
+
+                  <button type="submit" class="btn btn-primary pull-middle btn-lg">change-add</button>
+
+              </form>
+
+        </div>
+    </div>
+
+{% endblock %}

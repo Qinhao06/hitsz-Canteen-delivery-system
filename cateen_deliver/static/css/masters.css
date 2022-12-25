@@ -1,0 +1,168 @@
+
+
+body{
+  font-family: 'Montserrat', sans-serif;
+  height: 100vh;
+}
+
+
+.carouselwithform{
+  width:50%;
+  min-height: 100%;
+  height: 100%;
+
+  float: left;
+  display: inline;
+}
+
+
+.siteinfodiv{
+  background-color: rgba(255,255,255,0.5);
+  color: black;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+
+
+.infoheader{
+  padding-bottom: 30px;
+}
+
+
+
+.divwithform {
+  min-height: 100%;
+  height: 100%;
+  width: 50%;
+  float: left;
+  display: inline;
+  background-color: rgba(255,255,255,0.5);
+  color: black;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+
+
+.paraone{
+  padding-bottom: 25px;
+}
+
+
+
+.pararemaining{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.signupform{
+  width:50%;
+  min-height: 50%;
+  height: 50%;
+  float: right;
+  display: inline;
+  background-color: rgba(0, 0, 0, 0.5);
+  color:white;
+  padding:20px;
+  border-radius: 10px;
+}
+
+.form-text{
+color: green;
+}
+
+.nav-item{
+  margin-left:15px;
+  margin-right:15px;
+  color: black;
+}
+
+.inlinewithicon{
+  display: inline;
+  font-family: 'Montserrat';
+  font-size: 15px;
+}
+
+
+.cardmodify{
+  margin-top: 15px;
+  margin-bottom: 40px;
+}
+
+.headerspacing{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: block;
+}
+
+.addtocartbutton{
+  float: right;
+  font-size: 12px;
+  display: inline;
+}
+
+.removefromcartbutton{
+  float: right;
+  font-size: 12px;
+  display: inline;
+}
+
+
+
+.loginform{
+  width: 50%;
+  text-align: center;
+
+}
+
+.formback{
+  margin-left: 25%;
+  margin-top: 90px;
+}
+
+
+
+.trashicon{
+  display: inline;
+  float: right;
+}
+
+.jumbotron{
+
+    background: rgba(255,255,255, 0.5);
+}
+
+.checkoutbutton .continueshoppingbutton{
+  padding-top: 10px;
+}
+
+.headerdiv{
+  margin-bottom: 40px;
+  background: rgba(255, 255, 255, 0.5);
+  display: block;
+  border-radius: 10px;
+}
+
+.headertext{
+  padding: 5px;
+}
+
+.preparedorderdiv{
+  margin-top:40px;
+}
+
+.cardmodify {
+  background: rgba(255, 255, 255, 0.5);
+  color: black;
+}
+
+.dish{
+  position: fixed;
+  display: block;
+  align: center;
+}
+
+
+
+

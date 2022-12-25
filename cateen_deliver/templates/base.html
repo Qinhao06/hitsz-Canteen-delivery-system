@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>校园食堂外卖系统</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Alternative to Bootstrap 3 Glyphicons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="/static/css/masters.css">
+
+    	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<style>
+<!--   body {-->
+<!--  height: 1000px;-->
+<!--  background-image: url({% static 'image/1.jpg'%});-->
+<!--  background-repeat: no-repeat;-->
+<!--  background-size: cover;-->
+<!--  background-position: center 0;-->
+<!--  background-repeat: no-repeat;-->
+<!--  background-attachment: fixed;-->
+<!--  -webkit-background-size: cover;-->
+<!--  -o-background-size: cover;-->
+<!--  -moz-background-size: cover;-->
+<!--  -ms-background-size: cover;-->
+<!--}-->
+</style>
+
+<body>
+<br>
+<nav >
+    <div class="container ">
+        <ul class="nav  nav-pills pull-right nav-justified">
+            <li class="nav-item">
+              <a class="nav-link active" href="/">食堂外卖</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/order/payment/">订单</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/customer/change_password/">修改密码</a>
+            </li>
+
+            {% if request.session.is_login %}
+            <li class="nav-item">
+              <a class="nav-link active "  href="/customer/logout"  >登出</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active "  href="/shop/"  >商家管理</a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link  active"  href="#"  >当前在线：{{ request.session.user_id }}</a>
+            </li>
+
+            {% else %}
+             <li class="nav-item">
+              <a class="nav-link active " href="/admin/"  >管理员登录</a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link  active" href="/customer/login/"  >登录</a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link  active" href="/customer/register/" >注册</a>
+            </li>
+
+            {% endif %}
+          </ul>
+
+    </div>
+</nav>
+    <br>
+<div class="messages">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+
+<div class="container ">
+    {% block content %}
+
+    {% endblock %}
+</div>
+
+<div class="container">
+
+
+    <div class = "container dish">
+       {% if dishs %}
+        {% for dish in dishs %}
+    <form  method="post" action="/order/ass/">
+         {% csrf_token %}
+        <select class="hidden" name="ass_dish_id"><option>{{dish.dish_id}}</option></select>
+        <button type="submit" class="btn btn-info pull-right" >查看评价</button>
+
+    </form>
+    <form class='form-group ' action="/order/" method="post">
+          {% csrf_token %}
+    <div class="panel panel-info">
+	<div class="panel-heading">
+        <span class="panel-title" >{{dish.dish_id}}</span>
+        <select name="dish_id" class="panel-title hidden"> <option>{{dish.dish_id}}</option></select>
+		<span class="panel-title" >{{dish.dish_name}}</span>
+	</div>
+	<div class="panel-body "  style = "font-weight:bold">
+        价格：{{dish.price}} 描述：{{dish.description}} 商家：{{dish.stall.name}} 联系电话：{{dish.stall.telephone}} 地址: {{dish.stall.address}}
+        食堂：{{dish.stall.canteen.canteen_name}}
+
+        <button type="submit" class="btn btn-info pull-right">点餐</button>
+	</div>
+    </div>
+    </form>
+
+    {% endfor %}
+    {% endif %}
+    </div>
+
+
+</div>
+<canvas id="canvas"></canvas>
+
+
+<!-- Latest compiled and minified jQuery -->
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://unpkg.com/popper.js@1.15.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

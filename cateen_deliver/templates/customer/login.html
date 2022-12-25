@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}登录{% endblock %}
+{% block css %}<link href="{% static 'css/login.css' %}" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class=" formback">
+  <div class="loginform jumbotron">
+    <h3>登录🎈</h3>
+<!--    <div class="container">-->
+<!--        <div class="col-md-4 col-md-offset-4">-->
+
+             {% if message %}
+                  <div class="alert alert-warning">{{ message }}</div>
+              {% endif %}
+          <form class='form-group' action="/customer/login/" method="post">
+
+             {% csrf_token %}
+              <div class="form-group">
+                  <div class="text-left"><label for="InputUsername">用户名:</label></div>
+                  <input type="text" class="form-control" placeholder="……" id="username" name="username">
+              </div>
+              <div class="form-group">
+                  <div class="text-left"><label for="InputPassword">密码：</label></div>
+                  <input type="password" class="form-control" placeholder="……" id="password" name="password">
+              </div>
+
+            <button type="submit" class="btn btn-info pull-middle btn-lg ">登录</button>
+
+          </form>
+<!--        </div>-->
+<!--    </div> &lt;!&ndash; /container &ndash;&gt;-->
+</div>
+</div>
+{% endblock %}

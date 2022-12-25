@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}点餐{% endblock %}
+{% block css %}<link href="{% static 'css/login.css' %}" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+{% endblock %}
+
+{% block content %}
+<div class=" container  ">
+  <div class="loginform center-block ">
+    <h3>订单🍚</h3>
+           {% if message %}
+              <div class="alert alert-warning">{{ message }}</div>
+           {% endif %}
+
+           {% csrf_token %}
+
+                        <table class="table  table-bordered">
+                    <caption></caption>
+                    <thead>
+
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>订单编号</td>
+                            <td>用户姓名</td>
+                            <td>菜品</td>
+                            <td>数量</td>
+                            <td>价格</td>
+                            <td>商家</td>
+                            <td>订单状态</td>
+                            <td>外送地址</td>
+                            <td>联系方式</td>
+                            <td> 是否接单 </td>
+                        </tr>
+                        {% if order_list %}
+                            {% for order in order_list %}
+                        <tr>
+                            <td>{{order.order_id}}</td>
+                            <td>{{order.user_id}}</td>
+                            <td>{{order.dish.dish_name}}</td>
+                            <td>{{order.dish_num}}</td>
+                            <td>{% widthratio order.dish_num 1 order.dish.price %}</td>
+                            <td>{{order.dish.stall.name}}</td>
+                            <td>{{order.order_status}}</td>
+                            <td>{{order.address}}</td>
+                            <td>{{order.telephone}}</td>
+                            <td>
+
+                                <form class="form-group" method="post" action="/shop/order/" >
+                                    {% csrf_token %}
+                                    <select name="stall_order_id" class="hidden">
+                                    <option>{{order.order_id}}</option>
+                                    </select>
+                                        <button> 接单</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+
+
+        </div>
+    </div>
+
+{% endblock %}
